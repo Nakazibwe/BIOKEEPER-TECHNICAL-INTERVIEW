@@ -6,7 +6,8 @@ exports.createStaff = async(req,res) => {
     try {
         const {id} = req.user;
 
-        const { firstname, lastname, email , role, reports_to} = req.body;
+        const { firstname, lastname, email, role, reports_to, level } =
+          req.body;
 
         //Checking for availability of user.
         const user = await User.findById(id);
@@ -16,9 +17,16 @@ exports.createStaff = async(req,res) => {
         }
 
         //Checking for required fields.
-        if (!firstname || !lastname || !email || !role || !reports_to) {
-        res.status(400);
-        throw new Error('Please enter required fields');
+        if (
+          !firstname ||
+          !lastname ||
+          !email ||
+          !role ||
+          !reports_to ||
+          !level
+        ) {
+          res.status(400);
+          throw new Error('Please enter required fields');
         }
 
         //Checking for duplicate
@@ -33,6 +41,7 @@ exports.createStaff = async(req,res) => {
         lastname,
         email,
         role,
+        level,
         reports_to,
         creator:user.id,
         });
@@ -78,7 +87,7 @@ exports.updateStaff = async(req,res) => {
 
       const { staffid } = req.params;
 
-      const { firstname, lastname, email, role, reports_to } = req.body;
+      const { firstname, lastname, email, role, reports_to, level } = req.body;
 
       //Checking for availability of user.
       const user = await User.findById(id);
@@ -99,6 +108,7 @@ exports.updateStaff = async(req,res) => {
       staff.firstname = firstname ? firstname : staff.firstname;
       staff.lastname = lastname ? lastname : staff.lastname;
       staff.email = email ? email : staff.email;
+      staff.level = level ? level : staff.level;
       staff.role = role ? role : staff.role;
       staff.reports_to = reports_to ? reports_to : staff.reports_to;
 
