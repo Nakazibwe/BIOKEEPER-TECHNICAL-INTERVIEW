@@ -22,6 +22,11 @@ const staffSchema = mongoose.Schema(
       trim: true,
       required: [true, 'Please enter staff role'],
     },
+    level: {
+      type: String,
+      trim: true,
+      required: [true, 'Please enter staff level'],
+    },
     reports_to: {
       type: String,
       trim: true,
