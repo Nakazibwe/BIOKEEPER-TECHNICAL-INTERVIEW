@@ -80,6 +80,35 @@ exports.getStaff = async(req,res) => {
     }
 }
 
+//Get a staff
+exports.getAStaff = async(req,res) =>{
+    try {
+      const { id } = req.user;
+
+      const { staffid } = req.params;
+
+      //Checking for availability of user.
+      const user = await User.findById(id);
+      if (!user) {
+        res.status(404);
+        throw new Error('User not found');
+      }
+
+      //Checking for availability of staff
+      const staff = await Staff.findById(staffid).select('-creator');
+
+      if (!staff) {
+        res.status(404);
+        throw new Error('Staff not found');
+      }
+
+      return res.status(200).json(staff);
+
+    } catch (error) {
+        return res.json({ error: error.message });
+    }
+}
+
 //Update staff controller.
 exports.updateStaff = async(req,res) => {
     try {
