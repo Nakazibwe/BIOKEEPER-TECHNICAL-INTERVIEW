@@ -11,6 +11,9 @@ router.post('/', verifyToken, staffControllers.createStaff);
 //Read staff.
 router.get('/',verifyToken, staffControllers.getStaff);
 
+//Get a staff.
+router.get('/:staffid', verifyToken, staffControllers.getAStaff);
+
 //Update staff.
 router.patch('/:staffid', verifyToken, staffControllers.updateStaff);
 
