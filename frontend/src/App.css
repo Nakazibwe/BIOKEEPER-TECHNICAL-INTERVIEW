@@ -1,0 +1,300 @@
+* {
+  margin: 0;
+  padding: 0;
+  /* font-family: Montserrat, sans-serif; */
+}
+
+.hieracy-container {
+  height: auto;
+  width: 80%;
+  margin-top: 3%;
+  border-radius: 4px;
+  border: 1px solid #B6C9DA;
+  background-color: #B6C9DA;
+}
+
+.hieracial-grid {
+  display: flex;
+  padding-top: 1%;
+  border-bottom: 1px solid #F0F3F5;
+  padding-bottom: 1%;
+}
+
+.cards-container {
+  margin: 3%;
+  height: 90%;
+}
+
+.creation-container {
+  margin: auto;
+  margin-top: 3%;
+  margin-bottom: 3%;
+  height: auto;
+  width: 50%;
+  padding: 2%;
+  border-radius: 4px;
+  background-color: #F0F3F5;
+  border: 1px solid #F0F3F5;
+}
+
+.card {
+  width: 200px;
+  height: 120px;
+  margin: auto;
+  border-radius: 5px;
+  border: 1px solid #fff;
+  background-color: #fff;
+  border-top: 4px solid #e5e7eb;
+}
+
+.creationgrid {
+  display: flex;
+}
+
+.hieracy-icon {
+  font-size: 25px;
+  margin-left: 48%;
+  margin-top: -7px;
+}
+
+.creation-link {
+  color: #F0F3F5;
+  text-decoration: none;
+  font-weight: 700;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  margin-left: 84.7%;
+  background-color: #757D90;
+  border: 1px solid #757D90;
+}
+
+.staffcreation-grid {
+  display: flex;
+  padding-top: 3%;
+  padding-bottom: 3%;
+}
+
+.left-div {
+  width: 46%;
+  margin-right: 7%;
+}
+
+.input-label {
+  color: #525254;
+  font-weight: 400;
+  font-size: 12px;
+
+}
+
+.error-message {
+  color: red;
+  font-weight: 400;
+  font-size: 10px;
+}
+
+.left-input {
+  height: 30px;
+  margin-top: 2%;
+  width: 94%;
+  padding-left: 5%;
+  border: 1px solid #757D90;
+  border-radius: 2px;
+}
+
+.right-div {
+  width: 46%;
+}
+
+.right-input {
+  height: 30px;
+  margin-top: 2%;
+  width: 94%;
+  padding-left: 5%;
+  border: 1px solid #757D90;
+  border-radius: 2px;
+}
+
+.submit-btn {
+  margin-left: 30%;
+  height: 40px;
+  width: 40%;
+  background-color: #5E9568;
+  border: 1px solid #5E9568;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+
+.login-container {
+  height: 100vh;
+  background-color: #fff;
+  position: relative;
+}
+
+
+.ima-ge-container {
+  height: 100vh;
+  margin-right: 5%;
+}
+
+.ima-ge {
+  height: 100%;
+  width: 100%;
+}
+
+.form-container-login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container-login h1 {
+  color: var(--secondary1);
+  font-size: 42px;
+  margin-bottom: 30px;
+}
+
+.input-container label {
+  font-size: 15px;
+}
+
+.input-container {
+  margin-bottom: 10px;
+  position: relative;
+  width: 400px;
+}
+
+.input-container p {
+  color: rgb(228, 3, 3);
+  font-size: 13px;
+}
+
+
+.input-field {
+  height: 45px;
+  width: 400px;
+  border-radius: 5px;
+  margin: 5px 0 3px 0;
+  padding-left: 8px;
+  font-size: 16px;
+  font-family: Noto sans;
+  border: 1px solid #686767;
+}
+
+.input-field:focus {
+  outline: 2px solid #7e7e7e;
+  border: none;
+}
+
+.Visibility-icon-login {
+  color: var(--icon-color);
+  position: absolute;
+  top: 37px;
+  right: 0;
+  margin-right: 20px;
+}
+
+
+.login-button {
+  width: 150px;
+  height: 45px;
+  border-radius: 5px;
+  background-color: #5E9568;
+  border: none;
+  color: #F0F3F5;
+  font-size: 14px;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+
+.Logo-container-login {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  height: 150px;
+  width: 150px;
+}
+
+.Logo-login {
+  height: 150px;
+  width: 150px;
+}
+
+.Logo-container-login-smallScreen {
+  display: none;
+  text-align: center;
+  margin: auto;
+  width: 40%;
+  margin-bottom: 30px;
+}
+
+.Logo-container-login-smallScreen h4 {
+  color: #686767;
+}
+
+@media only screen and (max-width: 600px) {
+  .form-container-login h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .Logo-container-login-smallScreen {
+    display: block;
+  }
+
+  .Logo-container-login-smallScreen img {
+    display: block;
+    height: 50px;
+    width: 50px;
+    margin: auto;
+  }
+
+  .form-container-login {
+    height: 100vh;
+    width: 260px;
+  }
+
+  .Forgot-Plink {
+    width: 260px;
+  }
+
+  .input-container {
+    width: 260px !important;
+  }
+
+  .input-field {
+    height: 40px;
+    width: 260px;
+    font-size: 12px !important;
+  }
+
+  .ima-ge-container {
+    display: none;
+  }
+
+  .login-button {
+    width: 100%;
+    height: 40px;
+  }
+
+  .Forgot-Plink a {
+    font-size: 13px;
+  }
+
+  .input-container label {
+    font-size: 13px !important;
+  }
+
+  .Visibility-icon-login {
+    top: 35px;
+    right: 0;
+  }
+
+  .input-container p {
+    font-size: 10px;
+  }
+}
