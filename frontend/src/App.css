@@ -1,7 +1,6 @@
 * {
   margin: 0;
   padding: 0;
-  /* font-family: Montserrat, sans-serif; */
 }
 
 .hieracy-container {
@@ -189,7 +188,6 @@
 }
 
 .Visibility-icon-login {
-  color: var(--icon-color);
   position: absolute;
   top: 37px;
   right: 0;
