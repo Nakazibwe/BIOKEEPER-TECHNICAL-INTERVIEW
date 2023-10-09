@@ -1,7 +1,7 @@
 exports.employees = [
   {
     _id: '65205a224fe4687fe468fd7c',
-    firstname: 'Board of',
+    firstname: 'Board',
     lastname: 'Directors',
     email: 'bdirectors@company.com',
     role: 'Board of Directors',
