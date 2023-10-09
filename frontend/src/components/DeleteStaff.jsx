@@ -2,8 +2,7 @@ import React from 'react'
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { Formik, Form, Field, ErrorMessage, formik } from 'formik';
-import * as Yup from 'yup';
+import { Formik, Form, } from 'formik';
 import axios from 'axios';
 import { useState, useContext, useEffect } from 'react';
 import { AppContext } from '../context';
@@ -30,10 +29,9 @@ const DeleteStaff = () => {
          );
          if (response.status === 200) {
            setData(response.data);
-           console.log(response.data);
          }
        } catch (error) {
-         setMessage(error.response.data.message);
+         setMessage(error.response.data.error);
        }
      };
      fetchData();
@@ -48,14 +46,13 @@ const DeleteStaff = () => {
        );
        if (response.status === 200) {
          setMessage(response.data.message);
-
          setTimeout(() => {
            navigate('/', { replace: true });
          }, 1000);
        }
        formik.setSubmitting(false);
      } catch (error) {
-       setMessage(error.response.data.message);
+       setMessage(error.response.data.error);
      }
    };
    return (

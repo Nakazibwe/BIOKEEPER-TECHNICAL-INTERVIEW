@@ -1,8 +1,8 @@
-import React from 'react'
+import React from 'react';
 import Container from '@mui/material/Container';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-import { Formik, Form, Field, ErrorMessage, formik } from 'formik';
+import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
 import { useState, useContext, useEffect } from 'react';
@@ -29,10 +29,9 @@ const EditStaff = () => {
            );
         if (response.status === 200) {
           setData(response.data);
-          console.log(response.data);
         } 
         } catch (error) {
-        setMessage(error.response.data.message);
+        setMessage(error.response.data.error);
         }
     }
     fetchData();
@@ -84,7 +83,7 @@ const EditStaff = () => {
       }
       formik.setSubmitting(false);
     } catch (error) {
-      setMessage(error.response.data.message);
+      setMessage(error.response.data.error);
     }
   };
   return (

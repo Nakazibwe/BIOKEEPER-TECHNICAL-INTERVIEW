@@ -8,17 +8,16 @@ import * as Yup from "yup";
 import Grid from "@mui/material/Grid";
 import axios from "axios";
 import { AppContext } from "../context";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 
 const Login = () => {
   const initialValues = { email: "", password: "" };
   const {
     setAccessToken,
-    setMessage,
-    message,
   } = useContext(AppContext);
   const navigate = useNavigate();
+  const [message, setMessage] = useState('');
   const onSubmit = async (values, formik) => {
     try {
       const config = {
@@ -35,7 +34,7 @@ const Login = () => {
       }
       formik.setSubmitting(false);
     } catch (error) {
-        setMessage(error.response.data.message);
+        setMessage(error.response.data.error);
     }
   };
   
@@ -71,11 +70,7 @@ const Login = () => {
           >
             {(formik) => {
               return (
-                <Form
-                  action='http://ec2-44-203-199-122.compute-1.amazonaws.com:5000/api/auth/login'
-                  method='POST'
-                  encytpe='multipart/form-data'
-                >
+                <Form>
                   <div className='Logo-container-login-smallScreen'>
                     <img className='Logo-login' src={logo} alt='logo' />
                     <h4>BIOKEEPER</h4>
@@ -119,6 +114,17 @@ const Login = () => {
                   <button className='login-button' type='submit'>
                     Sign In
                   </button>
+                  <br />
+                  <br />
+                  <small style={{ fontSize: '12px', fontWeight: '500' }}>
+                    Dont have an account?{' '}
+                    <Link
+                      to='/register'
+                      style={{ textDecoration: 'none', color: 'dodgerblue' }}
+                    >
+                      Sign up
+                    </Link>
+                  </small>
                 </Form>
               );
             }}

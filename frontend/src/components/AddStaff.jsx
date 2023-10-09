@@ -68,7 +68,7 @@ const AddStaff = () => {
       }
       formik.setSubmitting(false);
     } catch (error) {
-        setMessage(error.response.data.message);
+        setMessage(error.response.data.error);
     }
   };
   return (

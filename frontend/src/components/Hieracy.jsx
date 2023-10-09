@@ -34,7 +34,7 @@ const Hieracy = () => {
           
         }
       } catch (error) {
-        setMessage(error.response.data.message);
+        setMessage(error.response.data.error);
       }
     };
     fetchData();
