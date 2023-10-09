@@ -68,6 +68,10 @@ const AddStaff = () => {
       }
       formik.setSubmitting(false);
     } catch (error) {
+      console.log(error)
+        if (error.response.status === 403) {
+          setMessage(error.response.data.error.message);
+        }
         setMessage(error.response.data.error);
     }
   };
@@ -90,7 +94,7 @@ const AddStaff = () => {
                 fontSize: '12px',
               }}
             >
-              {message}
+              {message.message ? message.message : message}
             </small>
           </Grid>
 

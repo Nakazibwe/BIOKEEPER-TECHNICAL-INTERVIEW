@@ -6,7 +6,6 @@ import Grid from '@mui/material/Grid';
 import avatar from './avatar.jpeg';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
-import SouthIcon from '@mui/icons-material/South';
 import {Link } from 'react-router-dom';
 import axios from 'axios';
 import { AppContext } from '../context';
@@ -34,7 +33,11 @@ const Hieracy = () => {
           
         }
       } catch (error) {
+        if(error.response.status === 403){
+          setMessage(error.response.data.error.message);
+        }
         setMessage(error.response.data.error);
+        
       }
     };
     fetchData();
@@ -98,6 +101,9 @@ const Hieracy = () => {
   return (
     <>
       <Container className='hieracy-container'>
+        <small style={{ color: 'purple' }}>
+          {message.message ? message.message : message}
+        </small>
         <Box className='cards-container'>
           {data.length === 0 ? (
             <Grid item xs={4} md={6} className='creationgrid'>

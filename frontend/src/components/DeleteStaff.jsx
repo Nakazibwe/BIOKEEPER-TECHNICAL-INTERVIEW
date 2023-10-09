@@ -31,6 +31,9 @@ const DeleteStaff = () => {
            setData(response.data);
          }
        } catch (error) {
+         if (error.response.status === 403) {
+           setMessage(error.response.data.error.message);
+         }
          setMessage(error.response.data.error);
        }
      };
@@ -52,6 +55,9 @@ const DeleteStaff = () => {
        }
        formik.setSubmitting(false);
      } catch (error) {
+       if (error.response.status === 403) {
+         setMessage(error.response.data.error.message);
+       }
        setMessage(error.response.data.error);
      }
    };
@@ -78,14 +84,11 @@ const DeleteStaff = () => {
                  fontSize: '12px',
                }}
              >
-               {message}
+               {message.message ? message.message : message}
              </small>
            </Grid>
 
-           <Formik
-             initialValues={initialValues}
-             onSubmit={onSubmit}
-           >
+           <Formik initialValues={initialValues} onSubmit={onSubmit}>
              {(formik) => {
                return (
                  <Form>

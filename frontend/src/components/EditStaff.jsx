@@ -31,6 +31,9 @@ const EditStaff = () => {
           setData(response.data);
         } 
         } catch (error) {
+        if (error.response.status === 403) {
+          setMessage(error.response.data.error.message);
+        }
         setMessage(error.response.data.error);
         }
     }
@@ -83,6 +86,9 @@ const EditStaff = () => {
       }
       formik.setSubmitting(false);
     } catch (error) {
+      if (error.response.status === 403) {
+        setMessage(error.response.data.error.message);
+      }
       setMessage(error.response.data.error);
     }
   };
@@ -105,7 +111,7 @@ const EditStaff = () => {
                 fontSize: '12px',
               }}
             >
-              {message}
+              {message.message ? message.message : message}
             </small>
           </Grid>
 
@@ -114,223 +120,218 @@ const EditStaff = () => {
             onSubmit={onSubmit}
             validationSchema={validationSchema}
           >
-            {(formik)=> {
-                return (
-                  <Form>
-                    <Grid item xs={6} md={8} className='staffcreation-grid'>
-                      <div className='left-div'>
-                        <small className='input-label'>Staff First name</small>
-                        <br />
-                        <Field
-                          type='text'
-                          name='firstname'
-                          className='left-input'
+            {(formik) => {
+              return (
+                <Form>
+                  <Grid item xs={6} md={8} className='staffcreation-grid'>
+                    <div className='left-div'>
+                      <small className='input-label'>Staff First name</small>
+                      <br />
+                      <Field
+                        type='text'
+                        name='firstname'
+                        className='left-input'
+                        value={
+                          formik.values.firstname
+                            ? formik.values.firstname
+                            : data.firstname
+                        }
+                      />
+                      <br />
+                      <ErrorMessage name='firstname'>
+                        {(msg) => (
+                          <small className='error-message'>{msg}</small>
+                        )}
+                      </ErrorMessage>
+                    </div>
+                    <div className='right-div'>
+                      <small className='input-label'>Staff Last name</small>
+                      <br />
+                      <Field
+                        type='text'
+                        name='lastname'
+                        className='right-input'
+                        value={
+                          formik.values.lastname
+                            ? formik.values.lastname
+                            : data.lastname
+                        }
+                      />
+                      <br />
+                      <ErrorMessage name='lastname'>
+                        {(msg) => (
+                          <small className='error-message'>{msg}</small>
+                        )}
+                      </ErrorMessage>
+                    </div>
+                  </Grid>
+                  <Grid item xs={6} md={8} className='staffcreation-grid'>
+                    <div className='left-div'>
+                      <small className='input-label'>Staff Email</small>
+                      <br />
+                      <Field
+                        type='text'
+                        name='email'
+                        className='left-input'
+                        value={
+                          formik.values.email ? formik.values.email : data.email
+                        }
+                      />
+                      <br />
+                      <ErrorMessage name='email'>
+                        {(msg) => (
+                          <small className='error-message'>{msg}</small>
+                        )}
+                      </ErrorMessage>
+                    </div>
+                    <div className='right-div'>
+                      <small className='input-label'>Staff Level</small>
+                      <br />
+                      <Field
+                        as='select'
+                        name='level'
+                        className='right-input'
+                        style={{ width: '99%' }}
+                      >
+                        <option
                           value={
-                            formik.values.firstname
-                              ? formik.values.firstname
-                              : data.firstname
+                            formik.values.level
+                              ? formik.values.level
+                              : data.level
                           }
-                        />
-                        <br />
-                        <ErrorMessage name='firstname'>
-                          {(msg) => (
-                            <small className='error-message'>{msg}</small>
-                          )}
-                        </ErrorMessage>
-                      </div>
-                      <div className='right-div'>
-                        <small className='input-label'>Staff Last name</small>
-                        <br />
-                        <Field
-                          type='text'
-                          name='lastname'
-                          className='right-input'
+                        >
+                          {data.level}
+                        </option>
+                        <option value='0'>0</option>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
+                        <option value='4'>4</option>
+                      </Field>
+                      <br />
+                      <ErrorMessage name='level'>
+                        {(msg) => (
+                          <small className='error-message'>{msg}</small>
+                        )}
+                      </ErrorMessage>
+                    </div>
+                  </Grid>
+                  <Grid item xs={6} md={8} className='staffcreation-grid'>
+                    <div className='left-div'>
+                      <small className='input-label'>Staff Role</small>
+                      <br />
+                      <Field
+                        as='select'
+                        name='role'
+                        className='left-input'
+                        style={{ width: '99%' }}
+                      >
+                        <option
                           value={
-                            formik.values.lastname
-                              ? formik.values.lastname
-                              : data.lastname
+                            formik.values.role ? formik.values.role : data.role
                           }
-                        />
-                        <br />
-                        <ErrorMessage name='lastname'>
-                          {(msg) => (
-                            <small className='error-message'>{msg}</small>
-                          )}
-                        </ErrorMessage>
-                      </div>
-                    </Grid>
-                    <Grid item xs={6} md={8} className='staffcreation-grid'>
-                      <div className='left-div'>
-                        <small className='input-label'>Staff Email</small>
-                        <br />
-                        <Field
-                          type='text'
-                          name='email'
-                          className='left-input'
+                        >
+                          {data.role}
+                        </option>
+                        <option value='Board of Directors'>
+                          Board of Directors
+                        </option>
+                        <option value='CEO'>CEO</option>
+                        <option value='CTO'>CTO</option>
+                        <option value='Staff Director'>Staff Director</option>
+                        <option value='Volunteer Director'>
+                          Volunteer Director
+                        </option>
+                        <option value='Finance Director'>
+                          Finance Director
+                        </option>
+                        <option value='Communications Director'>
+                          Communications Director
+                        </option>
+                        <option value='Fundraising Director'>
+                          Fundraising Director
+                        </option>
+                        <option value='Program Director'>
+                          Program Director
+                        </option>
+                        <option value='Operations Director'>
+                          Operations Director
+                        </option>
+                      </Field>
+                      <br />
+                      <ErrorMessage name='role'>
+                        {(msg) => (
+                          <small className='error-message'>{msg}</small>
+                        )}
+                      </ErrorMessage>
+                    </div>
+                    <div className='right-div'>
+                      <small className='input-label'>Staff Reports to</small>
+                      <br />
+                      <Field
+                        as='select'
+                        name='reports_to'
+                        className='right-input'
+                        style={{ width: '99%' }}
+                      >
+                        <option
                           value={
-                            formik.values.email
-                              ? formik.values.email
-                              : data.email
+                            formik.values.reports_to
+                              ? formik.values.reports_to
+                              : data.reports_to
                           }
-                        />
-                        <br />
-                        <ErrorMessage name='email'>
-                          {(msg) => (
-                            <small className='error-message'>{msg}</small>
-                          )}
-                        </ErrorMessage>
-                      </div>
-                      <div className='right-div'>
-                        <small className='input-label'>Staff Level</small>
-                        <br />
-                        <Field
-                          as='select'
-                          name='level'
-                          className='right-input'
-                          style={{ width: '99%' }}
                         >
-                          <option
-                            value={
-                              formik.values.level
-                                ? formik.values.level
-                                : data.level
-                            }
-                          >
-                            {data.level}
-                          </option>
-                          <option value='0'>0</option>
-                          <option value='1'>1</option>
-                          <option value='2'>2</option>
-                          <option value='3'>3</option>
-                          <option value='4'>4</option>
-                        </Field>
-                        <br />
-                        <ErrorMessage name='level'>
-                          {(msg) => (
-                            <small className='error-message'>{msg}</small>
-                          )}
-                        </ErrorMessage>
-                      </div>
-                    </Grid>
-                    <Grid item xs={6} md={8} className='staffcreation-grid'>
-                      <div className='left-div'>
-                        <small className='input-label'>Staff Role</small>
-                        <br />
-                        <Field
-                          as='select'
-                          name='role'
-                          className='left-input'
-                          style={{ width: '99%' }}
-                        >
-                          <option
-                            value={
-                              formik.values.role
-                                ? formik.values.role
-                                : data.role
-                            }
-                          >
-                            {data.role}
-                          </option>
-                          <option value='Board of Directors'>
-                            Board of Directors
-                          </option>
-                          <option value='CEO'>CEO</option>
-                          <option value='CTO'>CTO</option>
-                          <option value='Staff Director'>Staff Director</option>
-                          <option value='Volunteer Director'>
-                            Volunteer Director
-                          </option>
-                          <option value='Finance Director'>
-                            Finance Director
-                          </option>
-                          <option value='Communications Director'>
-                            Communications Director
-                          </option>
-                          <option value='Fundraising Director'>
-                            Fundraising Director
-                          </option>
-                          <option value='Program Director'>
-                            Program Director
-                          </option>
-                          <option value='Operations Director'>
-                            Operations Director
-                          </option>
-                        </Field>
-                        <br />
-                        <ErrorMessage name='role'>
-                          {(msg) => (
-                            <small className='error-message'>{msg}</small>
-                          )}
-                        </ErrorMessage>
-                      </div>
-                      <div className='right-div'>
-                        <small className='input-label'>Staff Reports to</small>
-                        <br />
-                        <Field
-                          as='select'
-                          name='reports_to'
-                          className='right-input'
-                          style={{ width: '99%' }}
-                        >
-                          <option
-                            value={
-                              formik.values.reports_to
-                                ? formik.values.reports_to
-                                : data.reports_to
-                            }
-                          >
-                            {data.reports_to}
-                          </option>
-                          <option value='Board of Directors'>
-                            Board of Directors
-                          </option>
-                          <option value='CEO'>CEO</option>
-                          <option value='CTO'>CTO</option>
-                          <option value='Staff Director'>Staff Director</option>
-                          <option value='Volunteer Director'>
-                            Volunteer Director
-                          </option>
-                          <option value='Finance Director'>
-                            Finance Director
-                          </option>
-                          <option value='Communications Director'>
-                            Communications Director
-                          </option>
-                          <option value='Fundraising Director'>
-                            Fundraising Director
-                          </option>
-                          <option value='Program Director'>
-                            Program Director
-                          </option>
-                          <option value='Operations Director'>
-                            Operations Director
-                          </option>
-                        </Field>
-                        <br />
-                        <ErrorMessage name='reports_to'>
-                          {(msg) => (
-                            <small className='error-message'>{msg}</small>
-                          )}
-                        </ErrorMessage>
-                      </div>
-                    </Grid>
-                    <Grid item xs={6} md={8} className='staffcreation-grid'>
-                      <button type='submit' className='submit-btn'>
-                        <small
-                          style={{
-                            color: '#F0F3F5',
-                            fontWeight: '800',
-                            fontSize: '12px',
-                          }}
-                        >
-                          Update Staff
-                        </small>
-                      </button>
-                    </Grid>
-                  </Form>
-                );
+                          {data.reports_to}
+                        </option>
+                        <option value='Board of Directors'>
+                          Board of Directors
+                        </option>
+                        <option value='CEO'>CEO</option>
+                        <option value='CTO'>CTO</option>
+                        <option value='Staff Director'>Staff Director</option>
+                        <option value='Volunteer Director'>
+                          Volunteer Director
+                        </option>
+                        <option value='Finance Director'>
+                          Finance Director
+                        </option>
+                        <option value='Communications Director'>
+                          Communications Director
+                        </option>
+                        <option value='Fundraising Director'>
+                          Fundraising Director
+                        </option>
+                        <option value='Program Director'>
+                          Program Director
+                        </option>
+                        <option value='Operations Director'>
+                          Operations Director
+                        </option>
+                      </Field>
+                      <br />
+                      <ErrorMessage name='reports_to'>
+                        {(msg) => (
+                          <small className='error-message'>{msg}</small>
+                        )}
+                      </ErrorMessage>
+                    </div>
+                  </Grid>
+                  <Grid item xs={6} md={8} className='staffcreation-grid'>
+                    <button type='submit' className='submit-btn'>
+                      <small
+                        style={{
+                          color: '#F0F3F5',
+                          fontWeight: '800',
+                          fontSize: '12px',
+                        }}
+                      >
+                        Update Staff
+                      </small>
+                    </button>
+                  </Grid>
+                </Form>
+              );
             }}
-            
           </Formik>
         </Box>
       </Container>
