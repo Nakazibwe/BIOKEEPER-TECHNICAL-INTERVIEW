@@ -74,20 +74,22 @@ const Hieracy = () => {
             </Link>
           </div>
           <small
-            style={{ fontWeight: '700', fontSize: '15px', marginRight: '3%' }}
+            style={{ fontWeight: '700', fontSize: '12px', marginRight: '3%' }}
           >
             {firstname}
           </small>
-          <small style={{ fontWeight: '700', fontSize: '15px' }}>
+          <small style={{ fontWeight: '700', fontSize: '12px' }}>
             {lastname}
           </small>
           <br />
-          <small style={{ color: 'grey', fontWeight: '500' }}>{role}</small>
+          <small style={{ color: 'grey', fontWeight: '500', fontSize: '10px' }}>
+            {role}
+          </small>
           <br />
           <small
             style={{
               color: 'grey',
-              fontSize: '12px',
+              fontSize: '10px',
               fontWeight: '500',
             }}
           >
